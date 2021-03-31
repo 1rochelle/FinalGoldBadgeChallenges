@@ -73,7 +73,8 @@ namespace _02ChallengeClaimsConsoleApp
                                     $"Description: {eachClaim.Description}\n" +
                                     $"Claim Amount: {eachClaim.ClaimAmount}\n" +
                                     $"Date of Incident: {eachClaim.DateOfIncident}\n" +
-                                    $"Date of Claim: {eachClaim.DateOfClaim}\n");
+                                    $"Date of Claim: {eachClaim.DateOfClaim}\n" +
+                                    $"Is Claim Valid: {eachClaim.IsValid}");
             }
             Console.WriteLine("Press any key to continue......");
             Console.ReadKey();
@@ -99,7 +100,8 @@ namespace _02ChallengeClaimsConsoleApp
                      $"Description: {nextClaim.Description}\n" +
                      $"Claim Amount: {nextClaim.ClaimAmount}\n" +
                      $"Date of Incident: {nextClaim.DateOfIncident}\n" +
-                     $"Date of Claim: {nextClaim.DateOfClaim}\n");
+                     $"Date of Claim: {nextClaim.DateOfClaim}\n" +
+                     $"Is Claim Valid: {nextClaim.IsValid}");
                 Console.WriteLine("Do you want to deal with this claim now? (Please type Y/N).");
                 string response = Console.ReadLine();
                 if (response.ToUpper() == "Y")

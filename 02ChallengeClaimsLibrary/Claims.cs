@@ -43,7 +43,7 @@ namespace _02ChallengeClaimsLibrary
             Description = description;
             ClaimAmount = claimAmount;
             DateOfIncident = dateOfIncident;
-            DateOfClaim = dateOfClaim;
+            DateOfClaim = dateOfClaim;       
         }
     }
 }
