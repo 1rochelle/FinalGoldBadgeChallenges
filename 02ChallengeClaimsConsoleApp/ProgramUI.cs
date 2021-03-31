@@ -137,6 +137,14 @@ namespace _02ChallengeClaimsConsoleApp
             item.DateOfIncident = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Please enter the date that this claim was filed:");
             item.DateOfClaim = DateTime.Parse(Console.ReadLine());
+            if(item.IsValid == true)
+            {
+                Console.WriteLine("The claim is valid.");
+            }
+            else
+            {
+                Console.WriteLine("The claim is not valid.");
+            }
             _claimsRepo.AddClaimToQueue(item);
             Console.WriteLine("Press any key to continue.....");
             Console.ReadKey();
