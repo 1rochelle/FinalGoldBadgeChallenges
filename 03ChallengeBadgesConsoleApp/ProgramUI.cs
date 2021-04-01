@@ -86,31 +86,54 @@ namespace _03ChallengeBadgesConsoleApp
                 "\n");
             Console.WriteLine("What is the badge number you'd like to update?");
             //more needed here
-
-
+            foreach 
+            badgeToUpdate.BadgeID = int.Parse(Console.ReadLine());
+            Claims badge = _badgesRepo.GetBadgeByID(badgeToUpdate);
+            if (badge != null)
+            {
+                ShowBadge(badge);
+            }
+            else
+            {
+                Console.WriteLine("I'm sorry, no such badge exists.");
+            }
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadKey();
+        }
+        private void ShowBadge(Badges individualBadge)
+        {
+            Console.WriteLine($"Badge #: {individualBadge.BadgeID}\n" +
+                                $"Door access to: {individualBadge.DoorNames}");
+        }
+        private void ShowDoors(Badges individualDoor)
+        {
+            foreach (var item in individualDoor.DoorNames)
+            {
+                Console.WriteLine(item);
+            }
         }
         private void DisplayAllBadges()
         {
             Console.Clear();
             Console.WriteLine("LIST OF ALL BADGES \n" +
                 "\n");
-            List<Badges> displayAllBadges = _badgesRepo.GetAllBadges();
-            foreach (Badges individualBadge in displayAllBadges)
-            {
+            Dictionary<int, Badges> displayAllBadges = _badgesRepo.GetAllBadges();
+            foreach (var individualBadge in displayAllBadges)
+            {           
                 Console.WriteLine("Key \n" +
-                                   $"Badge # {individualBadge.BadgeID}\n" +
-                                   $"Door Access {individualBadge.DoorNames}");
+                                   $"Badge # {individualBadge.Value.BadgeID}");
+                ShowDoors(individualBadge.Value);
             }
             Console.WriteLine("Press any key to continue......");
             Console.ReadKey();
         }
         private void SeedBadges()
         {
-            Badges firstSeedBadge = new Badges(4756, "A11, B1, A7");
-            Badges secondSeedBadge = new Badges(3, "A2, A3, B1");
+            Badges firstSeedBadge = new Badges(4756, new List<string> { "A11", "B1", "A7" });
+            Badges secondSeedBadge = new Badges(3, new List<string> { "A2", "A3", "B1" });
 
-            _badgesRepo.AddBadge(firstSeedBadge);
-            _badgesRepo.AddBadge(secondSeedBadge);
+            _badgesRepo.AddBadgeToDictionary(firstSeedBadge);
+            _badgesRepo.AddBadgeToDictionary(secondSeedBadge);
         }
     }
 }

@@ -9,14 +9,14 @@ namespace _03ChallengeBadgesLibrary
     public class Badges
     {
         public int BadgeID { get; set; }
-        public List<Badges> DoorNames { get; set; }
+        public List<string> DoorNames { get; set; }
 
         public Badges()
         {
 
         }
 
-        public Badges(int badgeID, List<Badges>doorNames)
+        public Badges(int badgeID, List<string>doorNames)
         {
             BadgeID = badgeID;
             DoorNames = doorNames;
