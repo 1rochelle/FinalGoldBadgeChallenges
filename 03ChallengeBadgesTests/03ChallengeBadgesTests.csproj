@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B94A9B6E-F2B9-47A6-885F-BD23E5F5314B}</ProjectGuid>
+    <ProjectGuid>{0F3A816C-F344-4D5C-8CE7-209AAEDD666E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_01ChallengeCafeTests</RootNamespace>
-    <AssemblyName>01ChallengeCafeTests</AssemblyName>
+    <RootNamespace>_03ChallengeBadgesTests</RootNamespace>
+    <AssemblyName>03ChallengeBadgesTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,17 +49,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CafeTest.cs" />
+    <Compile Include="BadgesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\01ChallengeCafeLibrary\01ChallengeCafeLibrary.csproj">
-      <Project>{D1495574-1E34-4556-8934-3F74857BE5CE}</Project>
-      <Name>01ChallengeCafeLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

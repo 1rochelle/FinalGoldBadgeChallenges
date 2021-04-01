@@ -45,7 +45,7 @@ namespace _02ChallengeClaimsConsoleApp
                         continueToRun = false;
                         break;
                     default:
-                        Console.WriteLine("Please enter a valid response between 1 and 4 \n" +
+                        Console.WriteLine("Please enter a valid response between 1 and 4. \n" +
                             "Press any key to continue........");
                         Console.ReadKey();
                         break;
