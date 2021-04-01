@@ -10,6 +10,7 @@ namespace _03ChallengeBadgesConsoleApp
     class ProgramUI
     {
         private readonly BadgesRepo _badgesRepo = new BadgesRepo();
+      
         public void Run()
         {
             SeedBadges();
@@ -61,37 +62,130 @@ namespace _03ChallengeBadgesConsoleApp
                 "\n");
             Console.WriteLine("What is the number on the badge:");
             newBadge.BadgeID = int.Parse(Console.ReadLine());
-            Console.WriteLine("List a door that it needs access to:");
-            newBadge.DoorNames = Console.ReadLine();
-            Console.WriteLine("Any other doors (y/n)?");
-            string response = Console.ReadLine();
-            while (response.ToLower() == "y")
+
+            bool hasFilledRooms = false;
+            while (hasFilledRooms == false)
             {
-                Console.WriteLine("List a door that it needs access to:");
-                newBadge.DoorNames = Console.ReadLine();
-                Console.WriteLine("Any other doors (y/n)?");
-                response = Console.ReadLine();
+               hasFilledRooms= Setup(newBadge, hasFilledRooms);
+
+               
             }
-            Console.WriteLine("Looks like you're all done adding this badge. " +
+            bool isSuccessful = _badgesRepo.AddBadgeToDictionary(newBadge);
+            if (isSuccessful)
+            {
+                Console.WriteLine("Looks like you're all done." +
                 "\n" +
                 "Press any key to return to the Main Menu.");
-            Console.ReadKey();
-            RunMenu();
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Press any key to return to the Main Menu.");
+                Console.ReadKey();
+            }
+           
+        }
 
+        private bool Setup(Badges newBadge,bool hasFilledRooms)
+        {
+            if (!hasFilledRooms)
+            {
+                Console.WriteLine("Please add a door number:");
+                string userInputDoorNumber = Console.ReadLine();
+                newBadge.DoorNames.Add(userInputDoorNumber);
+
+                Console.WriteLine("Any other doors (y/n)?");
+
+                string userInputOtherDoors = Console.ReadLine().ToLower();
+                if (userInputOtherDoors == "y")
+                {
+                   hasFilledRooms= Setup(newBadge, hasFilledRooms);
+                    return hasFilledRooms;
+                }
+               
+                else
+                {
+                    hasFilledRooms = true;
+                    return hasFilledRooms;
+                }
+            }
+            return false;
         }
         private void UpdateBadge()
         {
             Console.Clear();
+            Console.WriteLine("1. Update badge(FULL UPDATE) \n" +
+                "2. Remove a door \n" +
+                "3. Add a door \n");
+
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    FullUpdate();
+                    break;
+                case "2":
+                    RemoveDoor();
+                    break;
+                case "3":
+                    AddDoor();
+                    break;
+                default:
+                    RunMenu();
+                    break;
+            }
+        }
+
+        private void AddDoor()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveDoor()
+        {
+            Console.Clear();
+            //display all my doors and badges with the dictionary
+            //ask the user to please select the badge
+            //console.clear
+            //display single badge and details
+            //please input the door # for removal
+            //we need to get a method off of the _badgesRepo RemoveDoor
+            //signal to user that door was removed
+            Console.ReadKey();
+        }
+
+        private void FullUpdate()
+        {
             Console.WriteLine("UPDATE A BADGE \n" +
                 "\n");
             Console.WriteLine("What is the badge number you'd like to update?");
-            //more needed here
-            foreach 
-            badgeToUpdate.BadgeID = int.Parse(Console.ReadLine());
-            Claims badge = _badgesRepo.GetBadgeByID(badgeToUpdate);
+            Badges newBadgeData = new Badges();
+            int userInputForOldBadge = int.Parse(Console.ReadLine());
+
+            Badges badge = _badgesRepo.GetBadgeByID(userInputForOldBadge);
+
             if (badge != null)
             {
                 ShowBadge(badge);
+
+
+                bool hasFilledRooms = false;
+                while (hasFilledRooms == false)
+                {
+                    hasFilledRooms = Setup(newBadgeData, hasFilledRooms);
+
+
+                }
+
+                bool isSuccessful = _badgesRepo.UpdateExistingBadge(userInputForOldBadge, newBadgeData);
+                if (isSuccessful)
+                {
+                    Console.WriteLine("Success!");
+                }
+                else
+                {
+                    Console.WriteLine("Failure.");
+                }
             }
             else
             {
@@ -102,8 +196,8 @@ namespace _03ChallengeBadgesConsoleApp
         }
         private void ShowBadge(Badges individualBadge)
         {
-            Console.WriteLine($"Badge #: {individualBadge.BadgeID}\n" +
-                                $"Door access to: {individualBadge.DoorNames}");
+            Console.WriteLine($"Badge #: {individualBadge.BadgeID}");
+            ShowDoors(individualBadge);
         }
         private void ShowDoors(Badges individualDoor)
         {

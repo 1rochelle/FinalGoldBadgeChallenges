@@ -44,7 +44,12 @@ namespace _03ChallengeBadgesTests
         {
             Badges updateBadge = new Badges();
             BadgesRepo allBadgesRepo = new BadgesRepo();
-            Claims 
+            _repo.AddBadgeToDictionary(updateBadge);
+            //Dictionary<int, string> getTheBadges = _repo.GetAllBadges();
+            //Badges getBadgeByID = _repo.UpdateExistingBadge();
+            //Assert.AreEqual(updateBadge, getBadgeByID);
+
+
         }
       
     }

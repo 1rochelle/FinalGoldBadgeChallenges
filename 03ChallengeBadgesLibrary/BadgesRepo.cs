@@ -12,7 +12,7 @@ namespace _03ChallengeBadgesLibrary
 
         Dictionary<int, Badges> _badgesDictionary = new Dictionary<int, Badges>();
 
-        //somehow show how dictionary key is BadgeID and value is DoorNames
+
 
 
         public bool AddBadgeToDictionary(Badges badge)
@@ -49,6 +49,26 @@ namespace _03ChallengeBadgesLibrary
             }
             return false;
         }
+        //Delete
+        public bool DeleteExistingRoom(int badgeID, string roomNumber)
+        {
+            foreach (var item in _badgesDictionary)
+            {
+                if (item.Key == badgeID)
+                {
+                    foreach (var door in item.Value.DoorNames)
+                    {
+                        if (door == roomNumber)
+                        {
+                            item.Value.DoorNames.Remove(door);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        //add method
 
     }
 }
