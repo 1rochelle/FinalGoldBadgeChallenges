@@ -72,7 +72,7 @@ namespace _03ChallengeBadgesConsoleApp
                 Console.WriteLine("Any other doors (y/n)?");
                 response = Console.ReadLine();
             }
-            Console.WriteLine("Looks like you're done adding this badge. " +
+            Console.WriteLine("Looks like you're all done adding this badge. " +
                 "\n" +
                 "Press any key to return to the Main Menu.");
             Console.ReadKey();

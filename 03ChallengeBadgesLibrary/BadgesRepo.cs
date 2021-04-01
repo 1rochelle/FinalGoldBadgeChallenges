@@ -8,16 +8,47 @@ namespace _03ChallengeBadgesLibrary
 {
     public class BadgesRepo
     {
-        protected readonly List<Badges> _currentBadgePermissions = new List<Badges>();
+        
 
-        Dictionary<int, string> badgesDictionary = new Dictionary();
+        Dictionary<int, Badges> _badgesDictionary = new Dictionary<int, Badges>();
 
         //somehow show how dictionary key is BadgeID and value is DoorNames
 
-        //Read: show all badges
-        public List<Badges> GetAllBadges()
+
+        public bool AddBadgeToDictionary(Badges badge)
         {
-            return _currentBadgePermissions;
+            _badgesDictionary.Add(badge.BadgeID, badge);
+            return true;
         }
+        //Read: show all badges
+        public Dictionary<int, Badges> GetAllBadges()
+        {
+            return _badgesDictionary;
+        }
+        //Read: get badge by ID so update can work
+        public Badges GetBadgeByID(int badgeID)
+        {
+            foreach(var findBadge in _badgesDictionary)
+            {
+                if(badgeID == findBadge.Key)
+                {
+                    return findBadge.Value;
+                }
+            }
+            return null;
+
+        }
+        //Update: update door access
+        public bool UpdateExistingBadge(int oldBadgeID, Badges updateBadge)
+        {
+            Badges oldBadge = GetBadgeByID(oldBadgeID);
+            if(oldBadge != null)
+            {               
+                oldBadge.DoorNames = updateBadge.DoorNames;
+                return true;
+            }
+            return false;
+        }
+
     }
 }
