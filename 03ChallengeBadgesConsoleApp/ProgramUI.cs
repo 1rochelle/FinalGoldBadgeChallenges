@@ -9,6 +9,9 @@ namespace _03ChallengeBadgesConsoleApp
 {
     class ProgramUI
     {
+        //Yes, I know I did a lot of extra work for the update badge menu. 
+        //I totally meant to do that.
+        //(No I didn't.)
         private readonly BadgesRepo _badgesRepo = new BadgesRepo();
       
         public void Run()
@@ -25,9 +28,10 @@ namespace _03ChallengeBadgesConsoleApp
 
                 Console.WriteLine("Hello Security Admin, What would you like to do? \n" +
                     "1. Add a Badge \n" +
-                    "2. Edit a Badge \n" +
-                    "3. List all Badges" +
-                    "4. Exit");
+                    "2. Update a Badge \n" +
+                    "3. List all Badges \n" +
+                    "4. Complete a Full Update of a Badge \n" +
+                    "5. Exit");
 
                 string userInput = Console.ReadLine();
 
@@ -66,9 +70,7 @@ namespace _03ChallengeBadgesConsoleApp
             bool hasFilledRooms = false;
             while (hasFilledRooms == false)
             {
-               hasFilledRooms= Setup(newBadge, hasFilledRooms);
-
-               
+               hasFilledRooms= Setup(newBadge, hasFilledRooms);              
             }
             bool isSuccessful = _badgesRepo.AddBadgeToDictionary(newBadge);
             if (isSuccessful)
@@ -82,10 +84,8 @@ namespace _03ChallengeBadgesConsoleApp
             {
                 Console.WriteLine("Press any key to return to the Main Menu.");
                 Console.ReadKey();
-            }
-           
+            }          
         }
-
         private bool Setup(Badges newBadge,bool hasFilledRooms)
         {
             if (!hasFilledRooms)
@@ -138,12 +138,31 @@ namespace _03ChallengeBadgesConsoleApp
 
         private void AddDoor()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void RemoveDoor()
         {
             Console.Clear();
+            DisplayAllBadges();
+            Console.WriteLine("REMOVE DOOR \n" +
+                "\n" +
+                "Please type the badge ID# that you would like to update. \n");
+            int userInput = int.Parse(Console.ReadLine());
+            Console.Clear();
+            ShowBadge(userInput);
+            Console.WriteLine("Which door would you like to remove?");
+            string doorToRemove = Console.ReadLine();
+            if (doorToRemove == _badgesRepo.)
+            {
+                _badgesRepo.DeleteExistingRoom(userInput, doorToRemove);
+                Console.WriteLine("Door removed.");
+            }
+            else
+            {
+                Console.WriteLine("You entered an invalid response. No change was recorded for this badge.");
+            }
+            Console.WriteLine("Press any key to return to the main menu.");
             //display all my doors and badges with the dictionary
             //ask the user to please select the badge
             //console.clear

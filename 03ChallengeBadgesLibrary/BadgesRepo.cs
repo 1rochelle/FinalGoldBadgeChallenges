@@ -69,6 +69,6 @@ namespace _03ChallengeBadgesLibrary
             return false;
         }
         //add method
-
+        public bool AddNewRoom
     }
 }
