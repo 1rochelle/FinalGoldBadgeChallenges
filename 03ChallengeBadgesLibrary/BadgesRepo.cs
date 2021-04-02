@@ -68,7 +68,20 @@ namespace _03ChallengeBadgesLibrary
             }
             return false;
         }
-        //add method
-        public bool AddNewRoom
+
+        public bool AddNewRoom(int badgeID, string roomNumber)
+        {
+            Badges oldBadge = GetBadgeByID(badgeID);
+
+            if(oldBadge != null)
+            {
+                oldBadge.DoorNames.Add(roomNumber);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

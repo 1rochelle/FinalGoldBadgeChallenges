@@ -30,8 +30,8 @@ namespace _03ChallengeBadgesConsoleApp
                     "1. Add a Badge \n" +
                     "2. Update a Badge \n" +
                     "3. List all Badges \n" +
-                    "4. Complete a Full Update of a Badge \n" +
-                    "5. Exit");
+                    "4. Exit");
+
 
                 string userInput = Console.ReadLine();
 
@@ -138,7 +138,27 @@ namespace _03ChallengeBadgesConsoleApp
 
         private void AddDoor()
         {
-            
+            Console.Clear();
+            Console.WriteLine("ADD DOOR ACCESS \n" +
+                "\n" +
+                "Please type the badge ID# that you would like to update. \n");
+            int userInput = int.Parse(Console.ReadLine());
+            Console.Clear();
+            Badges badge = _badgesRepo.GetBadgeByID(userInput);
+            ShowBadge(badge);
+            Console.WriteLine("What door would you like to add?");
+            string doorToAdd = Console.ReadLine();
+            if (!badge.DoorNames.Contains(doorToAdd))
+            {
+                _badgesRepo.AddNewRoom(userInput, doorToAdd);
+                Console.WriteLine("Door added.");
+            }
+            else
+            {
+                Console.WriteLine("You entered an invalid response. No change was recorded for this badge.");
+            }
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadKey();
         }
 
         private void RemoveDoor()
@@ -150,10 +170,11 @@ namespace _03ChallengeBadgesConsoleApp
                 "Please type the badge ID# that you would like to update. \n");
             int userInput = int.Parse(Console.ReadLine());
             Console.Clear();
-            ShowBadge(userInput);
+            Badges badge = _badgesRepo.GetBadgeByID(userInput);
+            ShowBadge(badge);
             Console.WriteLine("Which door would you like to remove?");
             string doorToRemove = Console.ReadLine();
-            if (doorToRemove == _badgesRepo.)
+            if (badge.DoorNames.Contains(doorToRemove))
             {
                 _badgesRepo.DeleteExistingRoom(userInput, doorToRemove);
                 Console.WriteLine("Door removed.");
@@ -163,13 +184,6 @@ namespace _03ChallengeBadgesConsoleApp
                 Console.WriteLine("You entered an invalid response. No change was recorded for this badge.");
             }
             Console.WriteLine("Press any key to return to the main menu.");
-            //display all my doors and badges with the dictionary
-            //ask the user to please select the badge
-            //console.clear
-            //display single badge and details
-            //please input the door # for removal
-            //we need to get a method off of the _badgesRepo RemoveDoor
-            //signal to user that door was removed
             Console.ReadKey();
         }
 

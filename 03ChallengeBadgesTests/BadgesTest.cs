@@ -36,21 +36,21 @@ namespace _03ChallengeBadgesTests
             _repo = new BadgesRepo();
             _newBadgeOne = new Badges(322, new List<string>{ "A3", "B2", "N8" });
             _newBadgeTwo = new Badges(12, new List<string>{ "A4", "A3", "B1" });
-
+            _repo.AddBadgeToDictionary(_newBadgeOne);
+            _repo.AddBadgeToDictionary(_newBadgeTwo);
         }
         //Test Update method
         [TestMethod]
         public void UpdateExistingBadge_ShouldUpdateBadge()
         {
-            Badges updateBadge = new Badges();
-            BadgesRepo allBadgesRepo = new BadgesRepo();
-            _repo.AddBadgeToDictionary(updateBadge);
-            Dictionary<int, string> getTheBadges = _repo.GetAllBadges();
-            Badges getBadgeByID = _repo.UpdateExistingBadge();
-            Assert.AreEqual(updateBadge, getBadgeByID);
-
+            Badges updateBadge = new Badges(12, new List<string> { "R4" });
+            Assert.IsTrue(_repo.UpdateExistingBadge(12, updateBadge));
+        }
+        [TestMethod]
+        public void AddNewRoom_ShouldAddRoom()
+        {
+            Badges addNewRoom = new Badges(322, new List<string>{ "T5", "W1"});
 
         }
-      
     }
 }
