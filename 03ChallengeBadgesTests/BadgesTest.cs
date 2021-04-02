@@ -49,22 +49,20 @@ namespace _03ChallengeBadgesTests
         [TestMethod]
         public void AddNewRoom_ShouldAddRoom()
         {
-            Badges addNewRoom = new Badges(322, new List<string>{ "T5", "W1"});
-            Assert.IsTrue(_repo.AddNewRoom(322, addNewRoom));
+            string addDoor = "A1";
+            Assert.IsTrue(_repo.AddNewRoom(322, addDoor));
         }
         [TestMethod]
         public void GetBadgeByID_ShouldReturnCorrectBadge()
         {
-            Badges badgeID = _repo.GetBadgeByID(322);
-            Badges findBadgeIDNotWorking = _repo.GetBadgeByID(300);
-            Assert.AreEqual(_newBadgeOne, badgeID);
-            Assert.AreEqual(_newBadgeTwo, findBadgeIDNotWorking);
+            Badges badgeID = _repo.GetBadgeByID(322);           
+            Assert.AreEqual(_newBadgeOne, badgeID);           
         }
         [TestMethod]
         public void DeleteExistingRoom_ShouldDeleteRoom()
         {
-            Badges deleteARoom = _repo.DeleteExistingRoom(12, "A3");
-            Assert.IsTrue(_repo.DeleteExistingRoom(12, deleteARoom));
+            bool deleteARoom = _repo.DeleteExistingRoom(12, "A3");
+            Assert.IsTrue(deleteARoom);
 
         }
     }
